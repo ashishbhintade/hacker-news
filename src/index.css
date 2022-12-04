@@ -133,6 +133,10 @@ button:hover {
 }
 
 @media (min-width: 1024px) {
+  .section .title h1 {
+    font-size: 6rem;
+  }
+
   form {
     display: flex;
     align-items: center;
