@@ -2,7 +2,7 @@ function App() {
   return (
     <>
       <section className="section">
-        <form>
+        <form autoComplete="off">
           <input
             type="text"
             name="search"
@@ -12,12 +12,12 @@ function App() {
           <button>Search</button>
         </form>
 
-        <article>
+        <article className="title">
           <h1>Very big title here</h1>
           <a href="">Read Full Article</a>
         </article>
 
-        <article>
+        <article className="cards">
           <div>
             <h2>Heading 2</h2>
             <ul>
