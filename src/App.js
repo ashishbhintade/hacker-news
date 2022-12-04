@@ -8,6 +8,18 @@ function App() {
   const [largeTitle, setLargeTitle] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchArticles = async () => {
+      const res = await fetch(
+        `https://hn.algolia.com/api/v1/search?query=${query}`
+      );
+      const data = await res.json();
+      setItems(data.hits);
+      setLargeTitle(data.hits[0]);
+    };
+    fetchArticles();
+  }, []);
+
   return (
     <>
       <section className="section">
@@ -21,23 +33,29 @@ function App() {
           <button>Search</button>
         </form>
 
-        <article className="title">
-          <h1>Very big title here</h1>
-          <a href="">Read Full Article</a>
-        </article>
+        {isLoading ? (
+          <div className="spinner"></div>
+        ) : (
+          <>
+            <article className="title">
+              <h1>{largeTitle.title}</h1>
+              <a href="">Read Full Article</a>
+            </article>
 
-        <article className="cards">
-          <div>
-            <h2>Heading 2</h2>
-            <ul>
-              <li>By Ashish</li>
-              <li>
-                <a href="">Read Full Article</a>
-              </li>
-            </ul>
-            <p>Date</p>
-          </div>
-        </article>
+            <article className="cards">
+              <div>
+                <h2>Heading 2</h2>
+                <ul>
+                  <li>By Ashish</li>
+                  <li>
+                    <a href="">Read Full Article</a>
+                  </li>
+                </ul>
+                <p>Date</p>
+              </div>
+            </article>
+          </>
+        )}
       </section>
     </>
   );
