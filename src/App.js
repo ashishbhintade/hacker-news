@@ -9,6 +9,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchArticles = async () => {
       const res = await fetch(
         `https://hn.algolia.com/api/v1/search?query=${query}`
@@ -18,6 +19,7 @@ function App() {
       setLargeTitle(data.hits[0]);
     };
     fetchArticles();
+    setIsLoading(false);
   }, []);
 
   return (

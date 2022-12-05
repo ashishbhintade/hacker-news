@@ -60,6 +60,28 @@ button:hover {
   cursor: pointer;
 }
 
+.spinner {
+  width: 5rem;
+  height: 5rem;
+  border: 0.2rem solid rgba(150, 165, 180, 0.445);
+  border-top-color: #e92828;
+  border-radius: 50%;
+  animation: spin 1s infinite linear;
+  position: absolute;
+  top: 50%;
+  left: 44%;
+  transform: translate(-44%, -50%);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .section {
   padding: 1.25rem;
 }
