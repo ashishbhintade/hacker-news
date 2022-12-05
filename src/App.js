@@ -41,11 +41,13 @@ function App() {
           <>
             <article className="title">
               <h1>{largeTitle.title}</h1>
-              <a href="">Read Full Article</a>
+              <a href={largeTitle.url} target="_blank" rel="noreferrer">
+                Read Full Article
+              </a>
             </article>
 
             <article className="cards">
-              <div>
+              {/* {<div>
                 <h2>Heading 2</h2>
                 <ul>
                   <li>By Ashish</li>
@@ -54,7 +56,21 @@ function App() {
                   </li>
                 </ul>
                 <p>Date</p>
-              </div>
+              </div>} */}
+              {items.map(({ author, created_at, title, url, objectId }) => (
+                <div key={objectId}>
+                  <h2>{title}</h2>
+                  <ul>
+                    <li>By {author}</li>
+                    <li>
+                      <a href={url} target="_blank" rel="noreferrer">
+                        Read Full Article
+                      </a>
+                    </li>
+                  </ul>
+                  <p>{created_at}</p>
+                </div>
+              ))}
             </article>
           </>
         )}
