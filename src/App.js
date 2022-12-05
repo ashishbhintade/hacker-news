@@ -72,7 +72,7 @@ function App() {
                       </a>
                     </li>
                   </ul>
-                  <p>{created_at}</p>
+                  <p>{format(new Date(created_at), "dd MMM yyyy")}</p>
                 </div>
               ))}
             </article>
