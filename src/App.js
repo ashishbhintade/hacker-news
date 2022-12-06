@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -20,20 +22,46 @@ function App() {
     };
     fetchArticles();
     setIsLoading(false);
-  }, []);
+  }, [query]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!text) {
+      toast("Please Enter Something");
+    } else {
+      setQuery(text);
+      setText("");
+    }
+  };
 
   return (
     <>
       <section className="section">
-        <form autoComplete="off">
+        <form autoComplete="off" onSubmit={handleSubmit}>
           <input
             type="text"
             name="search"
             id="search"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
             placeholder="Search For Something"
           />
           <button>Search</button>
         </form>
+
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
 
         {isLoading ? (
           <div className="spinner"></div>
@@ -51,16 +79,6 @@ function App() {
             </p>
 
             <article className="cards">
-              {/* {<div>
-                <h2>Heading 2</h2>
-                <ul>
-                  <li>By Ashish</li>
-                  <li>
-                    <a href="">Read Full Article</a>
-                  </li>
-                </ul>
-                <p>Date</p>
-              </div>} */}
               {items.map(({ author, created_at, title, url, objectId }) => (
                 <div key={objectId}>
                   <h2>{title}</h2>
